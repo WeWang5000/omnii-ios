@@ -1,0 +1,42 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '13.0'
+use_frameworks!
+inhibit_all_warnings!
+
+target 'omnii'
+
+pod 'Alamofire'
+pod 'IGListKit'
+pod 'DeviceKit'
+pod 'Schedule'
+pod 'SwiftRichString'
+pod 'Kingfisher'
+pod 'SendBirdUIKit'
+
+#pod 'MapboxMaps', '10.11.0'
+
+pod 'CombineExt'
+pod 'Moya', :subspecs => ['Combine']
+pod 'SwifterSwift', :subspecs => ['SwiftStdlib', 'UIKit', 'Foundation', 'Dispatch', 'CoreAnimation', 'SceneKit']
+pod 'PermissionsKit', :git => 'https://github.com/sparrowcode/PermissionsKit', :subspecs => ['CameraPermission', 'ContactsPermission', 'CalendarPermission', 'PhotoLibraryPermission', 'NotificationPermission', 'FaceIDPermission']
+
+# private
+pod 'PKHUD', :git => 'https://github.com/huxiaoyang/PKHUD.git'
+pod 'DynamicBlurView', :git=>'https://github.com/huxiaoyang/DynamicBlurView.git'
+
+# local
+pod 'CommonUtils',  :path => 'ThirdLibrary/CommonUtils/'
+pod 'PopupDialog',  :path => 'ThirdLibrary/PopupDialog/'
+pod 'Bubble',       :path => 'ThirdLibrary/Bubble/'
+pod 'Pageable',     :path => 'ThirdLibrary/Pageable/'
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '5.8'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+    end
+  end
+
+end
